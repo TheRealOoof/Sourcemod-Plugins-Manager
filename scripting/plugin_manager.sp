@@ -72,7 +72,7 @@ public void OnPluginEnd()
 
 public void OnMapEnd() {
   if (g_Mode != Plgn_None) {
-    g_Mode = Plgn_None;
+    DisableAllPlugins();
   }
 }
 
@@ -82,6 +82,7 @@ public void DisableAllPlugins() {
     ServerCommand("sm_cvar sm_autoplant_enabled 0");
     ServerCommand("sm_cvar sm_multi1v1_enabled 0");
     ServerCommand("sm_say All Plugins Disabled");
+    g_Mode = Plgn_None; //Added this for redundency
 }
 
 public void OnAllPluginsLoaded() {
