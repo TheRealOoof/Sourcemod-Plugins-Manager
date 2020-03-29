@@ -4,6 +4,7 @@
 */
 
 #include <sourcemod>
+#include <sdktools>
 
 
 #pragma semicolon 1
@@ -60,13 +61,15 @@ public void OnPluginStart()
     RegAdminCmd("sm_1v1s", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
     RegAdminCmd("sm_disable1v1", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
     RegAdminCmd("sm_disable1v1s", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
+
+    RegAdminCmd("sm_autohop", Command_EnableAutoHop, ADMFLAG_CHANGEMAP, "Enable Auto-Bunnyhopping");
+    RegAdminCmd("sm_disableautohop", Command_DisableAutoHop, ADMFLAG_CHANGEMAP, "Disable Auto-Bunnyhopping");
 }
 
 public void OnPluginEnd()
 {
     OnMapEnd();
 }
-
 
 // Functions -----------------------------------------------------------------------------------------
 
@@ -82,11 +85,23 @@ public void DisableAllPlugins() {
     ServerCommand("sm_cvar sm_autoplant_enabled 0");
     ServerCommand("sm_cvar sm_multi1v1_enabled 0");
     ServerCommand("sm_say All Plugins Disabled");
-    g_Mode = Plgn_None; //Added this for redundency
+    g_Mode = Plgn_None;
 }
 
 public void OnAllPluginsLoaded() {
   DisableAllPlugins();
+}
+
+public void MoveAllPlayersToSpec() { 
+  int totalPlayers = GetClientCount(true);
+  for (int i = 1; i <= totalPlayers; i++) {
+    ChangeClientTeam(i, 1);
+    ForcePlayerSuicide(i);
+  }
+}
+
+public void KickAllBots() { 
+	ServerCommand("bot_kick");
 }
 
 
@@ -198,6 +213,10 @@ public Action Command_AutoPlantDisabled(int client, int args) {
 
 public Action Command_1v1Enabled(int client, int args) {
   if (g_Mode == Plgn_None) {
+    ServerCommand("mp_force_assign_teams 1");
+    KickAllBots();
+    ServerExecute();    //ServerExecute needed to make sure all the bots get kicked before MoveAllPlayersToSpec gets called
+    MoveAllPlayersToSpec();
     ServerCommand("sm_cvar sm_multi1v1_enabled 1");
     ServerCommand("sm_say 1v1's Enabled");
     g_Mode = Plgn_1v1Arena;
@@ -216,9 +235,22 @@ public Action Command_1v1Disabled(int client, int args) {
     ServerCommand("sm_say |Error| 1v1's are not enabled. Disable all plugin modes with !disableall");
     return Plugin_Handled;
   } else {
+  	ServerCommand("mp_force_assign_teams 0");
     ServerCommand("sm_cvar sm_multi1v1_enabled 0");
     ServerCommand("sm_say 1v1's Disabled");
     g_Mode = Plgn_None;
     return Plugin_Handled;
   }
+}
+
+public Action Command_EnableAutoHop(int client, int args) {
+  ServerCommand("sv_autobunnyhopping 1");
+  ServerCommand("sm_say Auto-Bunnyhop Enabled");
+  return Plugin_Handled;
+}
+
+public Action Command_DisableAutoHop(int client, int args) {
+  ServerCommand("sv_autobunnyhopping 0");
+  ServerCommand("sm_say Auto-Bunnyhop Disabled");
+  return Plugin_Handled;
 }
