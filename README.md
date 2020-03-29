@@ -1,7 +1,7 @@
 # Sourcemod Plugins Manager
 A sourcemod plugins manager to help disable/enable plugins with chat commands. This has been manually 
 coded to allow for easy management on my own private server. This sourcemod plugin uses 
-extensive use of the sourcemod chat sommand "sm_say". No other includes are needed to compile this.
+extensive use of the sourcemod chat command "sm_say". No other includes are needed to compile this.
 
 # Author
 Timothy Belt - Developer and Maintainer - [TheRealOoof](https://github.com/TheRealOoof)
