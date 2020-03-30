@@ -65,7 +65,7 @@ public void OnPluginStart()
     RegAdminCmd("sm_autohop", Command_EnableAutoHop, ADMFLAG_CHANGEMAP, "Enable Auto-Bunnyhopping");
     RegAdminCmd("sm_disableautohop", Command_DisableAutoHop, ADMFLAG_CHANGEMAP, "Disable Auto-Bunnyhopping");
     
-    RegConsoleCmd("sm_printplayers", Command_PrintPlayerCount);
+    RegConsoleCmd("sm_printplayers", Command_PrintPlayerCount); //debug
 }
 
 public void OnPluginEnd()
@@ -94,7 +94,7 @@ public void OnAllPluginsLoaded() {
   DisableAllPlugins();
 }
 
-public void PrintPlayerCount(int x) {
+public void PrintNumToConsole(int x) {
 	char players[32];
 	IntToString(x, players, 32);
 	PrintToConsoleAll(players);
@@ -102,9 +102,9 @@ public void PrintPlayerCount(int x) {
 
 public void MoveAllPlayersToSpec() { 
   int totalPlayers = GetClientCount(true);
-  PrintPlayerCount(totalPlayers);
+  PrintNumToConsole(totalPlayers);
   for (int i = 1; i <= totalPlayers; i++) {
-  	if (IsClientInGame(i)) {
+  	if (IsClientInGame(i) && !IsFakeClient(i)) {
   	ChangeClientTeam(i, 1);
   	ForcePlayerSuicide(i);
   	}
@@ -226,7 +226,6 @@ public Action Command_1v1Enabled(int client, int args) {
     ServerCommand("mp_force_assign_teams 1");
     ServerCommand("mp_warmup_end");
     KickAllBots();
-    //ServerExecute();//ServerExecute needed to make sure all the bots get kicked before MoveAllPlayersToSpec gets called
     MoveAllPlayersToSpec();
     ServerCommand("sm_cvar sm_multi1v1_enabled 1");
     ServerCommand("sm_say 1v1's Enabled");
@@ -267,5 +266,12 @@ public Action Command_DisableAutoHop(int client, int args) {
 }
 
 public Action Command_PrintPlayerCount(int client, int args) {
-	PrintPlayerCount(GetClientCount());
+	int x = GetClientCount();
+	int y = 0;
+	for (int i = 1; i <= x; i++) {
+		if (IsClientInGame(i) && !IsFakeClient(i)) {
+			y++;
+		}
+	}
+	PrintNumToConsole(y);
 }
