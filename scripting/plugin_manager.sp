@@ -25,69 +25,67 @@ public Plugin myinfo =
     name = "Sourcemod Plugin Manager",
     author = "TheRealOoof",
     description = "Manages plugins with chat commands",
-    version = "0.1",
+    version = "0.1.1",
     url = "https://github.com/TheRealOoof/Sourcemod-Plugins-Manager"
 };
 
 // Forwards ------------------------------------------------------------------------------------------
 public void OnPluginStart()
 {
-    RegAdminCmd("sm_enableretakes", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
-    RegAdminCmd("sm_enableretake", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
-    RegAdminCmd("sm_retakes", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
-    RegAdminCmd("sm_retake", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
-    RegAdminCmd("sm_disableretakes", Command_RetakesDisabled, ADMFLAG_CHANGEMAP, "Disables retake mode");
-    RegAdminCmd("sm_disableretake", Command_RetakesDisabled, ADMFLAG_CHANGEMAP, "Disables retake mode");
+  RegAdminCmd("sm_enableretakes", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
+  RegAdminCmd("sm_enableretake", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
+  RegAdminCmd("sm_retakes", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
+  RegAdminCmd("sm_retake", Command_RetakesEnabled, ADMFLAG_CHANGEMAP, "Enables retake mode");
+  RegAdminCmd("sm_disableretakes", Command_RetakesDisabled, ADMFLAG_CHANGEMAP, "Disables retake mode");
+  RegAdminCmd("sm_disableretake", Command_RetakesDisabled, ADMFLAG_CHANGEMAP, "Disables retake mode");
 
-    RegAdminCmd("sm_enableprac", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
-    RegAdminCmd("sm_enablepractice", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
-    RegAdminCmd("sm_prac", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
-    RegAdminCmd("sm_disableprac", Command_PracticeDisabled, ADMFLAG_CHANGEMAP, "Disables practice mode");
-    RegAdminCmd("sm_disablepractice", Command_PracticeDisabled, ADMFLAG_CHANGEMAP, "Disables practice mode");
+  RegAdminCmd("sm_enableprac", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
+  RegAdminCmd("sm_enablepractice", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
+  RegAdminCmd("sm_prac", Command_PracticeEnabled, ADMFLAG_CHANGEMAP, "Enabled practice mode");
+  RegAdminCmd("sm_disableprac", Command_PracticeDisabled, ADMFLAG_CHANGEMAP, "Disables practice mode");
+  RegAdminCmd("sm_disablepractice", Command_PracticeDisabled, ADMFLAG_CHANGEMAP, "Disables practice mode");
 
-    RegAdminCmd("sm_disableall", Command_DisableAllPlugins, ADMFLAG_CHANGEMAP, "Disables all plugins");
-    RegAdminCmd("sm_endwarmup", Command_WarmupEnd, ADMFLAG_CHANGEMAP, "Ends warmup");
+  RegAdminCmd("sm_disableall", Command_DisableAllPlugins, ADMFLAG_CHANGEMAP, "Disables all plugins");
+  RegAdminCmd("sm_endwarmup", Command_WarmupEnd, ADMFLAG_CHANGEMAP, "Ends warmup");
 
-    RegAdminCmd("sm_enableautoplant", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
-    RegAdminCmd("sm_enableap", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
-    RegAdminCmd("sm_autoplant", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
-    RegAdminCmd("sm_ap", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
-    RegAdminCmd("sm_disableautoplant", Command_AutoPlantDisabled, ADMFLAG_CHANGEMAP, "Disables Autoplant, only in retake mode");
-    RegAdminCmd("sm_disableap", Command_AutoPlantDisabled, ADMFLAG_CHANGEMAP, "Disables Autoplant, only in retake mode");
+  RegAdminCmd("sm_enableautoplant", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
+  RegAdminCmd("sm_enableap", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
+  RegAdminCmd("sm_autoplant", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
+  RegAdminCmd("sm_ap", Command_AutoPlantEnabled, ADMFLAG_CHANGEMAP, "Enables Autoplant, only in retake mode");
+  RegAdminCmd("sm_disableautoplant", Command_AutoPlantDisabled, ADMFLAG_CHANGEMAP, "Disables Autoplant, only in retake mode");
+  RegAdminCmd("sm_disableap", Command_AutoPlantDisabled, ADMFLAG_CHANGEMAP, "Disables Autoplant, only in retake mode");
 
-    RegAdminCmd("sm_enable1v1", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
-    RegAdminCmd("sm_enable1v1s", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
-    RegAdminCmd("sm_1v1", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
-    RegAdminCmd("sm_1v1s", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
-    RegAdminCmd("sm_disable1v1", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
-    RegAdminCmd("sm_disable1v1s", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
+  RegAdminCmd("sm_enable1v1", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
+  RegAdminCmd("sm_enable1v1s", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
+  RegAdminCmd("sm_1v1", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
+  RegAdminCmd("sm_1v1s", Command_1v1Enabled, ADMFLAG_CHANGEMAP, "Enable Multi 1v1");
+  RegAdminCmd("sm_disable1v1", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
+  RegAdminCmd("sm_disable1v1s", Command_1v1Disabled, ADMFLAG_CHANGEMAP, "Disable Multi 1v1");
 
-    RegAdminCmd("sm_autohop", Command_EnableAutoHop, ADMFLAG_CHANGEMAP, "Enable Auto-Bunnyhopping");
-    RegAdminCmd("sm_disableautohop", Command_DisableAutoHop, ADMFLAG_CHANGEMAP, "Disable Auto-Bunnyhopping");
-    
-    RegConsoleCmd("sm_printplayers", Command_PrintPlayerCount); //debug
+  RegAdminCmd("sm_autohop", Command_EnableAutoHop, ADMFLAG_CHANGEMAP, "Enable Auto-Bunnyhopping");
+  RegAdminCmd("sm_disableautohop", Command_DisableAutoHop, ADMFLAG_CHANGEMAP, "Disable Auto-Bunnyhopping");
+
+  RegConsoleCmd("sm_printplayers", Command_PrintPlayerCount); //debug
 }
 
 public void OnPluginEnd()
 {
-    OnMapEnd();
+  OnMapEnd();
 }
 
 // Functions -----------------------------------------------------------------------------------------
 
 public void OnMapEnd() {
-  if (g_Mode != Plgn_None) {
-    DisableAllPlugins();
-  }
+  DisableAllPlugins();
 }
 
 public void DisableAllPlugins() {
-    ServerCommand("sm_exitpractice");
-    ServerCommand("sm_cvar sm_retakes_enabled 0");
-    ServerCommand("sm_cvar sm_autoplant_enabled 0");
-    ServerCommand("sm_cvar sm_multi1v1_enabled 0");
-    ServerCommand("sm_say All Plugins Disabled");
-    g_Mode = Plgn_None;
+  ServerCommand("sm_exitpractice");
+  ServerCommand("sm_cvar sm_retakes_enabled 0");
+  ServerCommand("sm_cvar sm_autoplant_enabled 0");
+  ServerCommand("sm_cvar sm_multi1v1_enabled 0");
+  ServerCommand("sm_say All Plugins Disabled");
+  g_Mode = Plgn_None;
 }
 
 public void OnAllPluginsLoaded() {
@@ -95,26 +93,24 @@ public void OnAllPluginsLoaded() {
 }
 
 public void PrintNumToConsole(int x) {
-	char players[32];
-	IntToString(x, players, 32);
-	PrintToConsoleAll(players);
+  char players[32];
+  IntToString(x, players, 32);
+  PrintToConsoleAll(players);
 }
 
 public void MoveAllPlayersToSpec() { 
   int totalPlayers = GetClientCount(true);
-  PrintNumToConsole(totalPlayers);
   for (int i = 1; i <= totalPlayers; i++) {
-  	if (IsClientInGame(i) && !IsFakeClient(i)) {
-  	ChangeClientTeam(i, 1);
-  	ForcePlayerSuicide(i);
-  	}
+    if (IsClientInGame(i) && !IsFakeClient(i)) {
+    ChangeClientTeam(i, 1);
+    ForcePlayerSuicide(i);
+    }
   }
 }
+
 public void KickAllBots() { 
-	ServerCommand("bot_kick");
+  ServerCommand("bot_kick");
 }
-
-
 
 // Commands ------------------------------------------------------------------------------------------
 public Action Command_RetakesEnabled(int client, int args) {
@@ -122,16 +118,16 @@ public Action Command_RetakesEnabled(int client, int args) {
     ServerCommand("sm_cvar sm_retakes_enabled 1");
     ServerCommand("sm_say Retakes enabled.");
     if (g_autoplantEnabled) { 
-        ServerCommand("sm_cvar sm_autoplant_enabled 1"); 
-        ServerCommand("sm_say AutoPlant enabled"); }
+      ServerCommand("sm_cvar sm_autoplant_enabled 1"); 
+      ServerCommand("sm_say AutoPlant enabled"); }
     g_Mode = Plgn_Retakes;
     return Plugin_Handled;
   } else if (g_Mode == Plgn_Retakes) {
     ServerCommand("sm_say |Error| Retakes already enabled. Use !disableretakes to disable retakes");
     return Plugin_Handled;
   } else {
-      ServerCommand("sm_say |Error| Another mode enabled. Disable all plugin modes with !disableall");
-      return Plugin_Handled;
+    ServerCommand("sm_say |Error| Another mode enabled. Disable all plugin modes with !disableall");
+    return Plugin_Handled;
   }
 }
 
@@ -140,8 +136,8 @@ public Action Command_RetakesDisabled(int client, int args) {
     ServerCommand("sm_cvar sm_retakes_enabled 0");
     ServerCommand("sm_say Retakes disabled.");
     if (g_autoplantEnabled) { 
-        ServerCommand("sm_cvar sm_autoplant_enabled 0"); 
-        ServerCommand("sm_say AutoPlant disabled"); }
+      ServerCommand("sm_cvar sm_autoplant_enabled 0"); 
+      ServerCommand("sm_say AutoPlant disabled"); }
     g_Mode = Plgn_None;
     return Plugin_Handled;
     }
